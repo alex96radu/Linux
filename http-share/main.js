@@ -43,8 +43,6 @@ function serveFile(req, res) {
         return;
     }
     name = decodeURI(name);
-    console.log(files);
-    console.log(name);
     const file = files.find(f => f === name);
     if (!file) {
         res.writeHead(404);
