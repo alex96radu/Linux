@@ -1,2 +1,0 @@
-#!/bin/sh
-dmenu -c -fn "monospace:size=10" -nb "#071a10" -nf "#071a10" -sb "#649568" -sf "#eeeeee" -p "$1" <&- && echo
