@@ -35,7 +35,13 @@ function serveSumary(req: IncomingMessage, res: ServerResponse) {
 }
 
 function serveFile(req: IncomingMessage, res: ServerResponse) {
-  const name = req.url?.substring(1)
+  let name = req.url?.substring(1)
+  if (!name) {
+    res.writeHead(404)
+    res.end()
+    return
+  }
+  name = decodeURI(name!)
   const file = files.find(f => f===name)
   if (!file) {
     res.writeHead(404)

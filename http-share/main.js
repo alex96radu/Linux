@@ -36,7 +36,15 @@ function serveSumary(req, res) {
     res.end(`<ul>${list}</ul>`);
 }
 function serveFile(req, res) {
-    const name = req.url?.substring(1);
+    let name = req.url?.substring(1);
+    if (!name) {
+        res.writeHead(404);
+        res.end();
+        return;
+    }
+    name = decodeURI(name);
+    console.log(files);
+    console.log(name);
     const file = files.find(f => f === name);
     if (!file) {
         res.writeHead(404);
