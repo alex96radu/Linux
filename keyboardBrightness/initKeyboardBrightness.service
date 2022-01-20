@@ -1,0 +1,11 @@
+[Unit]
+Description=Initialize ASUS backlight for DWM
+ConditionVirtualization=!container
+
+[Service]
+Type=oneshot
+ExecStart=chmod 777 /sys/class/leds/asus::kbd_backlight/brightness
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

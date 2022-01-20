@@ -1,0 +1,6 @@
+{
+  "files.associations": {
+    "xlib-xcb.h": "c",
+    "xft.h": "c"
+  }
+}
