@@ -1,6 +1,6 @@
-import http, { IncomingMessage, ServerResponse } from 'http'
+import http from 'http'
 import { validInterface } from './utilities'
-import { argv, stdout } from 'process'
+import { stdout } from 'process'
 import qrcode from 'qrcode'
 import { concatenateOnSameLine } from './utilities'
 import serve from './server'

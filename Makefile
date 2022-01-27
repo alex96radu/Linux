@@ -1,2 +1,0 @@
-install:
-	cp ./.bashrc ~/.bashrc

@@ -1,9 +1,10 @@
 import fs from "fs"
 import { IncomingMessage, ServerResponse } from "http"
+import path from "path"
 import { argv } from "process"
+import mime from 'mime-types'
 
 const files: string[] = fs.readdirSync('.')
-
 
 function serveSumary(req: IncomingMessage, res: ServerResponse) {
   res.setHeader("Content-Type", "text/html")
@@ -11,8 +12,6 @@ function serveSumary(req: IncomingMessage, res: ServerResponse) {
 
   const list = files.map((file: string) => `<li><a href="${file}">${file}</a></li>`).join("")
   res.write(`<ul>${list}</ul>`)
-
-
 
   res.end();
 }
