@@ -1,0 +1,7 @@
+{
+    "editor.tabSize": 2,
+    "C_Cpp.default.includePath": [
+      "node_modules/nan",
+      "/usr/include/node/"
+    ]
+}
