@@ -1,7 +1,8 @@
 #!/bin/bash
 COMPOSER="picom &"
+FEH="feh --bg-scale ~/wallpaper.jpg &"
 NOTIFICATIONS="dunst &"
 CONKY="(conky | while read LINE; do xsetroot -name \"\$LINE\"; done) &"
 DWM="exec dwm"
-printf "$COMPOSER\n$NOTIFICATIONS\n$CONKY\n$DWM\n" > ~/.xinitrc
+printf "$COMPOSER\n$FEH\n$NOTIFICATIONS\n$CONKY\n$DWM\n" > ~/.xinitrc
 startx

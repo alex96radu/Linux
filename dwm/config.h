@@ -66,10 +66,6 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-c", "-m", dmenumon, "-fn", dmenufont, "-nb", col_green2, "-nf", col_green1, "-sb", col_green3, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "st", NULL };
-static const char *brightup[]    = { "xbacklight", "-inc", "5", NULL };
-static const char *brightdown[]  = { "xbacklight", "-dec", "5", NULL };
-static const char *volupcmd[] = { "amixer", "set", "Master", "10%+", "unmute", NULL };
-static const char *voldowncmd[] = { "amixer", "set", "Master", "10%-", "unmute", NULL };
 
 
 static Key keys[] = {
@@ -107,10 +103,10 @@ static Key keys[] = {
 	TAGKEYS(                        XK_8,                     								7)
 	TAGKEYS(                        XK_9,                     								8)
 	{ MODKEY|ShiftMask,             XK_q,     								quit,           {0} },
-	{ 0,                            XF86XK_MonBrightnessUp,   				spawn, 			{.v = brightup } },
-	{ 0,                            XF86XK_MonBrightnessDown, 				spawn,			{.v = brightdown   } },
-	{ 0, 							XF86XK_AudioLowerVolume, 				spawn,			{.v = voldowncmd } },
-	{ 0,  							XF86XK_AudioRaiseVolume, 				spawn,			{.v = volupcmd } },
+	{ 0,                            XF86XK_MonBrightnessUp, 				spawn,			SHCMD("xbacklight -inc 5 && notify-send \"Screen brightness\" -h int:value:`xbacklight -get` -t 1000")},
+	{ 0,                            XF86XK_MonBrightnessDown, 				spawn,			SHCMD("xbacklight -dec 5 && notify-send \"Screen brightness\" -h int:value:`xbacklight -get` -t 1000")},
+	{ 0, 							XF86XK_AudioLowerVolume, 				spawn,			SHCMD("amixer set Master \"10%-\" unmute && notify-send \"Volume\" -h int:value:`amixer sget Master | grep 'Right:' | awk -F'[[%]' '{ print $2 }'` -t 1000")},
+	{ 0, 							XF86XK_AudioRaiseVolume, 				spawn,			SHCMD("amixer set Master \"10%+\" unmute && notify-send \"Volume\" -h int:value:`amixer sget Master | grep 'Right:' | awk -F'[[%]' '{ print $2 }'` -t 1000")},
 	{ 0,  							XF86XK_KbdBrightnessUp, 				spawn,			SHCMD("keyboardBrightness inc")},
 	{ 0,  							XF86XK_KbdBrightnessDown, 				spawn,			SHCMD("keyboardBrightness dec")}
 };
