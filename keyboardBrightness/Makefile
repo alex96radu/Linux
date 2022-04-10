@@ -1,5 +1,6 @@
 build:
-	g++ keyboardBrightness.cpp -o keyboardBrightness
+	g++ Notifications.cpp keyboardBrightness.cpp -o keyboardBrightness -std=c++20 `pkg-config --cflags --libs libnotify`
 install: build
 	cp keyboardBrightness /bin/keyboardBrightness
-	cp initKeyboardBrightness.service /etc/systemd/system/initKeyboardBrightness.service
+	mkdir -p /etc/runit/sv/initKeyboardBrightness/
+	cp ./initKeyboardBrightness/run /etc/runit/sv/initKeyboardBrightness/run

@@ -2,11 +2,12 @@
 #include <cstdlib>
 #include <cstring>
 
+#include "Notifications.h"
+
 const int MIN_BRIGHTNESS = '0';
 const int MAX_BRIGHTNESS = '3';
 
-int main(int argc, char** argv) 
-{
+int main(int argc, char** argv) {
     if (argc <= 1) {
         return EXIT_FAILURE;
     }
@@ -44,6 +45,9 @@ int main(int argc, char** argv)
     fflush(file);
 
     fclose(file);
+
+    Progress progress = (Progress) (brightness - '0');
+    Notify(progress);
 
     return EXIT_SUCCESS;
 }
